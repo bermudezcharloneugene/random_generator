@@ -1,62 +1,47 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Random Generator API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Developed using laravel 8.0 and mysql. (Use XAMPP to test the project. Please use the latest xampp version and PHP version to test this application)
 
-## About Laravel
+## Things to do first before testing the random generator API
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Create a database and name it as generate
+- run `composer i`
+- run `php artisan key:generate`
+- edit the .env file (see Section Environment Setup)
+- run `php artisan migrate`
+- run `php artisan db:seed --class=NumbersSeeder`
+- to run the whole the application in your local machine run `php artisan serve` (http://127.0.0.1:8000/api/generate)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Routes Available for testing
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### /api/generate (Generate a random number)
 
-## Learning Laravel
+Sample response:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    {"data":[{"id":35,"generated_hash":"c3391bc673","generated_number":"2076735535"}]}
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### /api/generate/all (Show all generated numbers)
 
-## Laravel Sponsors
+Sample response:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    data: [{id: 1, generated_hash: "fbead450fe", generated_number: "1128705324"},…]
+    0: {id: 1, generated_hash: "fbead450fe", generated_number: "1128705324"}
+    1: {id: 2, generated_hash: "46db74ba17", generated_number: "1824072697"}
+    2: {id: 3, generated_hash: "1353a2ab12", generated_number: "1085744671"}
+    3: {id: 4, generated_hash: "5adb16bffc", generated_number: "1242893121"}
+    4: {id: 5, generated_hash: "3dbd513f28", generated_number: "92666484"}
 
-### Premium Partners
+#### /api/retrieve/{id} (Retrieve a random generated number using its unique id)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
+Sample response: 
 
-## Contributing
+    [{"id":1,"generated_hash":"fbead450fe","generated_number":"1128705324"}]
+    
+## ENVIRONMENT SETUP
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### In your laravel .env file look for this constants and change their values to this. If you have a different username and password in your type it here also.
 
-## Code of Conduct
+    DB_DATABASE=numbers
+    DB_USERNAME=root
+    DB_PASSWORD=
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
