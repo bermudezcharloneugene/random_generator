@@ -6,6 +6,8 @@ Developed using laravel 8.0 and mysql. (Use XAMPP to test the project. Please us
 
 - Create a database and name it as generate
 - run `composer i`
+- in the root directory of the project make a .env file
+- copy all the contents of the .env.example to .env file
 - run `php artisan key:generate`
 - edit the .env file (see Section Environment Setup)
 - run `php artisan migrate`
